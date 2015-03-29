@@ -1,0 +1,137 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+public class Account{
+	//declare data fields
+	private int id = 0;
+	private double balance = 0;
+	private double annualInterestRate = 0;
+	private java.util.Date dateCreated;
+	private String name;
+	private ArrayList<Transaction> transaction = new ArrayList();
+	
+	
+	
+	
+	//no-arg constructor to define date
+	Account(){
+		dateCreated = new java.util.Date();
+	}
+	
+	//constructor with args to define date, id, balance 
+	Account(int id,double balance,String name){
+		dateCreated = new java.util.Date();
+		this.id = id;
+		this.balance = balance;
+		this.name = name;
+	}
+	
+	//a method to set id 
+	void setId(int id){
+		this.id = id;
+	}
+	
+	//a method to set balance
+	void setBalance(double balance){
+		this.balance = balance;
+	}
+	
+	//a method to get id
+	int getId(){
+		return id;
+	}
+	
+	//a method to get balance
+	double getBalance(){
+		return balance;
+	}
+	
+	//a method to get date
+	java.util.Date getDateCreated(){
+		return dateCreated;
+	}
+	
+	//a method to set the rate for year
+	void setAnnualInterestRate(){
+		annualInterestRate = 1.5;
+	}
+	
+	//a method to get the rate for year
+	double getAnnualInterestRate(){
+		return annualInterestRate;
+	}
+	
+	//a method to take money
+	void withdraw(double takeMoney){
+		balance = balance - takeMoney;
+		transaction.add(new Transaction('W',takeMoney,getBalance(),"Take little money"));
+	}
+	
+	//a method to store money
+	void depoist(double storeMoney){
+		balance = balance + storeMoney;
+		transaction.add(new Transaction('D',storeMoney,getBalance(),"Store little money"));
+	}
+	
+	//a method to get monthly rate
+	double getMonthlyInterestRate(){
+		return annualInterestRate / 12;
+	}
+	
+	//a method to get monthly interest
+	double getMonthlyInterest(){
+		return balance * getMonthlyInterestRate() / 100;
+	}
+	
+	
+	public static void main(String[] args){
+	
+		Account account = new Account(1122,1000,"George");
+
+		
+	}
+}
+
+class Transaction {
+	//Declare data fields
+	private java.util.Date date;
+	private char type;
+	private double amount;
+	private double balance;
+	private String description;
+	//constructor to construct objects with value
+	public Transaction(char type, double amount, double balance, String description) {
+		date = new java.util.Date();
+		this.type = type;
+		this.amount = amount;
+		this.balance = balance;
+		this.description = description;
+	}
+	
+	//Get the date
+	public java.util.Date getDate() {
+		return date;
+	}
+	
+	//Get the type
+	public char getType() {
+		return type;
+	}
+
+	//Get the amount
+	public double getAmount() {
+		return amount;
+	}
+	
+	//Get the balance
+	public double getBalance() {
+		return balance;
+	}
+	
+	//Get the description
+	public String getDescription() {
+		return description;
+	}
+	
+	
+}
+
